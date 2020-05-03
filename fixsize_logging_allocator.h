@@ -61,8 +61,6 @@ struct fixsize_logging_allocator {
         return ret_pointer;
     }
 
-
-
     void deallocate(T *p, std::size_t n) {
 #ifndef USE_PRETTY
         std::cout << "deallocate: [n  = " << n << "] " << std::endl;
@@ -72,9 +70,10 @@ struct fixsize_logging_allocator {
         if (n>allocated_elements_num)
             throw std::bad_alloc();
         allocated_elements_num -= n;
+//        p=p;
 
-        if (allocated_elements_num == 0)
-            std::free(p);
+//        if (allocated_elements_num == 0)
+//            std::free(p);
     }
 
     template<typename U, typename ...Args>
@@ -87,8 +86,6 @@ struct fixsize_logging_allocator {
 
         new(p) U(std::forward<Args>(args)...);
     }
-
-//    };
 
     template<typename U>
     void destroy(U *p) {

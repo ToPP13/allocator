@@ -19,23 +19,23 @@ class CustomArray
 public:
     CustomArray(): mem_pointer(nullptr)
     {
-        auto ptr = _allocator.allocate(N);
+        auto ptr = allocator_.allocate(N);
         mem_pointer = std::shared_ptr<T>(ptr);
         for (size_t i=0; i < N; i++)
-            _allocator.construct(mem_pointer.get() + i, T());
+            allocator_.construct(mem_pointer.get() + i, T());
 
     }
     ~CustomArray()
     {
-        for (size_t i=0; i < N; i++)
-            _allocator.destroy(mem_pointer.get() + i);
-        _allocator.deallocate(mem_pointer.get(), N);
+//        for (size_t i=0; i < N; i++)
+//            _allocator.destroy(mem_pointer.get() + i);
+//        _allocator.deallocate(mem_pointer.get(), N);
     }
     bool set_elem(std::size_t n, const T &t)
     {
         if (n >= N)
             throw std::out_of_range{""};
-        _allocator.construct(mem_pointer.get() + n, t);
+        allocator_.construct(mem_pointer.get() + n, t);
         return true;
     }
 
@@ -45,7 +45,7 @@ public:
     }
 private:
     std::shared_ptr<T> mem_pointer;
-    ALLOCATOR _allocator;
+    ALLOCATOR allocator_;
 };
 
 #endif // CUSTOM_ARRAY_H

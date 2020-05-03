@@ -1,8 +1,6 @@
 #ifndef LOGGING_ALLOCATOR_H
 #define LOGGING_ALLOCATOR_H
 
-#endif // LOGGING_ALLOCATOR_H
-
 #include <memory>
 #include <iostream>
 
@@ -74,3 +72,5 @@ struct logging_allocator {
     }
 };
 
+
+#endif // LOGGING_ALLOCATOR_H

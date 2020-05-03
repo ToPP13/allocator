@@ -15,6 +15,10 @@ before_script:
 - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
 - sudo apt-get update -qq
 script:
+# - cd task_1/
+# - cd task_2/
+# - cd task_3/
+# - cd task_4/
 - cmake .
 - cmake --build .
 - cmake --build . --target test
