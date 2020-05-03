@@ -70,8 +70,7 @@ struct fixsize_logging_allocator {
         if (n>allocated_elements_num)
             throw std::bad_alloc();
         allocated_elements_num -= n;
-//        p=p;
-
+        p=p;
 //        if (allocated_elements_num == 0)
 //            std::free(p);
     }
