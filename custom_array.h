@@ -27,9 +27,11 @@ public:
     }
     ~CustomArray()
     {
-//        for (size_t i=0; i < N; i++)
-//            _allocator.destroy(mem_pointer.get() + i);
-//        _allocator.deallocate(mem_pointer.get(), N);
+        for (size_t i=0; i < N; i++)
+        {
+            allocator_.destroy(mem_pointer.get() + i);
+        }
+//        allocator_.deallocate(mem_pointer.get(), N);
     }
     bool set_elem(std::size_t n, const T &t)
     {

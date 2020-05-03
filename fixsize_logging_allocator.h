@@ -35,7 +35,7 @@ struct fixsize_logging_allocator {
 #ifndef USE_PRETTY
         std::cout << "Constructor: [n = " << n << "]" << std::endl;
 #else
-//        std::cout << __PRETTY_FUNCTION__ << "consructor [n = " << N << "]" << std::endl;
+        std::cout << __PRETTY_FUNCTION__ << "consructor [n = " << N << "]" << std::endl;
 #endif
     }
 
@@ -43,7 +43,7 @@ struct fixsize_logging_allocator {
 #ifndef USE_PRETTY
         std::cout << "allocate: [n = " << n << "]" << std::endl;
 #else
-//        std::cout << __PRETTY_FUNCTION__ << "[n = " << n << "]" << std::endl;
+        std::cout << __PRETTY_FUNCTION__ << "[n = " << n << "]" << std::endl;
 #endif
         if ((allocated_elements_num==0) && (n>0))
         {
@@ -67,10 +67,10 @@ struct fixsize_logging_allocator {
 #else
         std::cout << __PRETTY_FUNCTION__ << "[n = " << n << "]" << std::endl;
 #endif
-        if (n>allocated_elements_num)
+        if (n>allocated_elements_num || p==nullptr)
             throw std::bad_alloc();
         allocated_elements_num -= n;
-        p=p;
+//        p=p;
 //        if (allocated_elements_num == 0)
 //            std::free(p);
     }
@@ -80,7 +80,7 @@ struct fixsize_logging_allocator {
 #ifndef USE_PRETTY
         std::cout << "construct" << std::endl;
 #else
-//        std::cout << __PRETTY_FUNCTION__ << std::endl;
+        std::cout << __PRETTY_FUNCTION__ << std::endl;
 #endif
 
         new(p) U(std::forward<Args>(args)...);
@@ -91,7 +91,7 @@ struct fixsize_logging_allocator {
 #ifndef USE_PRETTY
         std::cout << "destroy" << std::endl;
 #else
-//        std::cout << __PRETTY_FUNCTION__ << std::endl;
+        std::cout << __PRETTY_FUNCTION__ << std::endl;
 #endif
         p->~U();
     }
